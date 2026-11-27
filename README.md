@@ -24,11 +24,31 @@ pip install -r requirements.txt
 python tierlist_maker.py
 ```
 
-## Yeni sürüm yayınlama
 
-Bir etiket (tag) oluşturup GitHub'a gönderince `.exe` otomatik derlenir ve Releases'e eklenir:
+# Tier List Maker
+
+A desktop application that creates tier lists from S to F.
+
+- You can rename each tier row (e.g., “Best” instead of “S”)
+- Drag and drop images into tiers; reorder them within a row
+- Color-coded labels (visible only in the app) and list name/label search
+- Save, edit, and delete lists
+- Download the tier board as a JPG (labels are not included in the JPG)
+
+## Installation on Windows
+
+1. Open the latest version from the **Releases** section on the right side of this page.
+2. Download and run the **TierListMaker.exe** file.
+
+If Windows displays a “Your PC is protected” (SmartScreen) warning, select **More info → Run anyway**. This warning is normal because the application is not signed.
+
+The lists are stored in the `%APPDATA%\TierListMaker` folder.
+
+## Running from Source Code
 
 ```
-git tag v1.0.2
-git push origin v1.0.2
+pip install -r requirements.txt
+python tierlist_maker.py
 ```
+
+
