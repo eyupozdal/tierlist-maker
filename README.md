@@ -1,6 +1,6 @@
 # Tier List Maker (Türkçe)
 
-[English Below] #english
+[English below](#english)
 
 S'den F'ye tier listeleri oluşturan masaüstü uygulaması.
 
