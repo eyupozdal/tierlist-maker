@@ -1,4 +1,4 @@
-name: Windows .exe derle
+name: Windows kurulum dosyası derle
 
 on:
   push:
@@ -24,23 +24,33 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pyinstaller
 
-      - name: .exe derle
+      - name: Uygulamayı paketle
         run: >
-          pyinstaller --onefile --windowed
+          pyinstaller --onedir --windowed
           --name TierListMaker
           --icon assets/icon.ico
           --add-data "assets/icon.ico;assets"
           tierlist_maker.py
 
-      - name: Derlenen dosyayı yükle (Actions sekmesinden indirilebilir)
+      - name: Inno Setup kur
+        run: choco install innosetup -y --no-progress
+
+      - name: Kurulum sihirbazını derle
+        shell: pwsh
+        run: |
+          $v = "${{ github.ref_name }}".TrimStart("v")
+          if ($v -notmatch '^\d+(\.\d+)*$') { $v = "0.0.0" }
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DMyAppVersion=$v" installer.iss
+
+      - name: Kurulum dosyasını yükle (Actions sekmesinden indirilebilir)
         uses: actions/upload-artifact@v4
         with:
-          name: TierListMaker-windows
-          path: dist/TierListMaker.exe
+          name: TierListMaker-Setup
+          path: installer_output/TierListMaker-Setup.exe
 
       - name: Releases'e ekle
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/TierListMaker.exe
+          files: installer_output/TierListMaker-Setup.exe
           generate_release_notes: true
