@@ -1,4 +1,6 @@
-# Tier List Maker
+# Tier List Maker (Türkçe)
+
+[English Below] #english
 
 S'den F'ye tier listeleri oluşturan masaüstü uygulaması.
 
@@ -25,7 +27,7 @@ python tierlist_maker.py
 ```
 
 
-# Tier List Maker
+# English
 
 A desktop application that creates tier lists from S to F.
 
